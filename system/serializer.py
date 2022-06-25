@@ -1,4 +1,5 @@
 import imp
+from django.dispatch import receiver
 from rest_framework import serializers
 from system.models import Profile,Doctor,Patient,Review,ChestDetails,Chronic_diseases,Patient_chronic_diseases,Pregnant_patient,state
 
@@ -13,8 +14,13 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=Profile
-        fields='__all__'
-        #fields= ('name','email','password','gander','city','phone_number','profile_image','type_id')
+        
+        fields= '__all__'
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Review
+        fields=['owner','doctor','review_comment','evaluation']
 
 
 class DoctorSerializer(serializers.ModelSerializer):
@@ -22,13 +28,13 @@ class DoctorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=Doctor
-        fields=['short_intro','bio','national_id','identification','social_website','doctor_patient_set','review']
-
+        fields=['type_name','name','email','password','gander','phone_number','profile_image','short_intro','bio','national_id','identification','social_website','doctor_patient_set','review','doctor_id']
+        
 
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model=Patient
-        fields=['patient_x_ray',' patientDoctor','patient_id','profile_id','diseases','Pregnant']
+        fields=['type_name','name','email','password','gander','phone_number','profile_image','patient_x_ray','patientDoctor','patient_id','diseases','Pregnant']
 
 class ChestDetailsSerializer(serializers.ModelSerializer):
     x_ray_image= serializers.ImageField(required=False)
@@ -36,13 +42,6 @@ class ChestDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model=ChestDetails
         fields='__all__'
-
-
-class ReviewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=Review
-        fields='__all__'
-
 
 class Chronic_diseasesSerializer(serializers.ModelSerializer):
     class Meta:

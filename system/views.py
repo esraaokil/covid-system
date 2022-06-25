@@ -33,7 +33,7 @@ def profile_create(request):
         return Response(serializer.data, status= status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET','PUT','DELETE'])
-def profile_edit(request, pk):
+def profile_edit(request,  pk):
     try:
         profile = Profile.objects.get(pk=pk)
     except Profile.DoesNotExists:

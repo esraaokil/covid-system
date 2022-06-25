@@ -19,7 +19,9 @@ def upload_to(instance, filename):
  
 class state(models.Model):
     state_arabic=models.CharField(_("governorate_name_ar"),max_length=50)  
-    state_english=models.CharField(_("governorate_name_en"),max_length=50)             
+    state_english=models.CharField(_("governorate_name_en"),max_length=50)   
+
+          
 
 class Profile(models.Model):
     type_choices= (
