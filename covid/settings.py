@@ -30,7 +30,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 #SECRET_KEY = 'django-insecure-y&!0z)t_gt5)e=g8^jsi*1fmo!%wgj$2$8^vjx!7xre#ica6j#'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+DEBUG = config('DEBUG', default=False, cast=bool)
+
 #DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','.localhost', 'covid-system-project.herokuapp.com']
@@ -94,11 +95,20 @@ WSGI_APPLICATION = 'covid.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-from dj_database_url import parse as dburl
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+
+from dj_database_url import parse as db_url
+# default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
-    'default':config('DATABASE_URL', default=default_dburl, cast=dburl),
-            }
+    'default': config(
+        'DATABASE_URL',
+        default='sqlite:///{}'.format(os.path.join(BASE_DIR, 'db.sqlite3')),
+        cast=db_url),
+}
+
+# DATABASES = {
+#     'default':config(
+#         'DATABASE_URL', default=default_dburl, cast=dburl),
+#             }
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
