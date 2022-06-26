@@ -15,7 +15,6 @@ def state_create(request):
         serializer = stateSerializer(s, many=True)
         return Response(serializer.data)
 
-
 #profile 
 @api_view(['GET','POST'])
 def profile_create(request):

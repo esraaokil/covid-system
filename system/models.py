@@ -130,3 +130,5 @@ class Pregnant_patient(models.Model):
      pregnancy_month =models.IntegerField(blank=True, null=True)
      created_at = models.DateTimeField(auto_now_add=True)
      patient_id=models.ForeignKey(Patient,related_name='Pregnant', on_delete=models.CASCADE,null=True, blank=True)
+
+     
