@@ -33,7 +33,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG')
 #DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1','.localhost', 'covid-system-project.herokuapp.com']
 
 
 # Application definition
@@ -102,6 +102,7 @@ DATABASES = {
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
+
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
