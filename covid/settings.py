@@ -34,7 +34,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 #DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','.localhost', 'covid-system-project.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -96,19 +96,14 @@ WSGI_APPLICATION = 'covid.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-from dj_database_url import parse as db_url
-# default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-DATABASES = {
-    'default': config(
-        'DATABASE_URL',
-        default='sqlite:///{}'.format(os.path.join(BASE_DIR, 'db.sqlite3')),
-        cast=db_url),
-}
+from dj_database_url import parse as dburl
+default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
-# DATABASES = {
-#     'default':config(
-#         'DATABASE_URL', default=default_dburl, cast=dburl),
-#             }
+
+DATABASES = {
+    'default':config(
+        'DATABASE_URL', default=default_dburl, cast=dburl),
+            }
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
